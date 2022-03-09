@@ -37,3 +37,5 @@ with open('tweets.txt', 'w') as file:
     for count, tweet in enumerate(tweets):
         file.write(f'{count}. {tweet}')
         file.write('\n')
+
+        
