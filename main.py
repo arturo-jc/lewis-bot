@@ -6,9 +6,11 @@ import os
 
 load_dotenv()
 
-LAST_MENTION = "last_mention.txt"
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+LAST_MENTION = os.path.join(THIS_FOLDER, "last_mention.txt")
+TWEETS = os.path.join(THIS_FOLDER, "tweets.txt")
 
-with open("tweets.txt", "r") as f:
+with open(TWEETS, "r") as f:
     tweet_library = f.readlines()
 
 
