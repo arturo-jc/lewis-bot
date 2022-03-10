@@ -34,8 +34,6 @@ tweets = extract_tweets(
 )
 
 with open('tweets.txt', 'w') as file:
-    for count, tweet in enumerate(tweets):
-        file.write(f'{count}. {tweet}')
+    for tweet in tweets:
+        file.write(tweet)
         file.write('\n')
-
-        
