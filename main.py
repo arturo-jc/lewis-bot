@@ -1,8 +1,10 @@
+from flask import Flask
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
 import random
 import re
 import tweepy
 import os
-import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -61,7 +63,17 @@ def reply_to_mentions():
                 )
         update_last_mention(mention_id)
 
+
+application = Flask(__name__)
+scheduler = BackgroundScheduler()
+scheduler.add_job(
+    func=reply_to_mentions,
+    trigger="interval",
+    seconds=60
+)
+scheduler.start()
+
+atexit.register(lambda: scheduler.shutdown())
+
 if __name__ == "__main__":
-    while True:
-        reply_to_mentions()
-        time.sleep(150)
+    application.run(port=5000)
