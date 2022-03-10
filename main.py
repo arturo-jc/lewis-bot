@@ -47,7 +47,7 @@ def reply_to_mentions():
         since_id=get_last_mention()
     ).data
 
-    if len(mentions) > 0:
+    if mentions and len(mentions) > 0:
         mention_id = 0
         for mention in reversed(mentions):
             mention_id = mention.id
@@ -64,4 +64,4 @@ def reply_to_mentions():
 if __name__ == "__main__":
     while True:
         reply_to_mentions()
-        time.sleep(60)
+        time.sleep(150)
