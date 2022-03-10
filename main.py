@@ -1,8 +1,9 @@
 import random
 import re
 import tweepy
-from dotenv import load_dotenv
 import os
+import time
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -60,5 +61,7 @@ def reply_to_mentions():
                 )
         update_last_mention(mention_id)
 
-reply_to_mentions()
-
+if __name__ == "__main__":
+    while True:
+        reply_to_mentions()
+        time.sleep(60)
