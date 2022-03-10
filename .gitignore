@@ -3,3 +3,4 @@ sample.pdf
 .env
 env/
 .idea/
+.ebextensions/

@@ -13,7 +13,18 @@ THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
 LAST_MENTION = os.path.join(THIS_FOLDER, "last_mention.txt")
 TWEETS = os.path.join(THIS_FOLDER, "tweets.txt")
 
-with open(TWEETS, "r") as f:
+application = Flask(__name__)
+
+@application.route("/")
+def index():
+    return "Successfully deployed"
+
+
+with open(
+        file=TWEETS,
+        mode="r",
+        encoding="ISO-8859-1"
+) as f:
     tweet_library = f.readlines()
 
 
@@ -64,7 +75,6 @@ def reply_to_mentions():
         update_last_mention(mention_id)
 
 
-application = Flask(__name__)
 scheduler = BackgroundScheduler()
 scheduler.add_job(
     func=reply_to_mentions,

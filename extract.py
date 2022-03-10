@@ -1,7 +1,7 @@
 from pdfminer.high_level import extract_text
 
-sample_passage = 'When running the above example, you can stop the program by pressing ctrl+c at the same time. As you can see, these loop constructs serve different purposes. The for loop runs for a fixed amount of times, while the while loop runs until the loop condition changes. In this example, the condition is the boolean True which will never change, so it will run forever.'
-sample_sentences = sample_passage.split('.')
+DOCUMENT = 'otpow.pdf'
+
 
 def get_longest_tweet(index_start, sentence_list):
     tweet = None
@@ -14,6 +14,7 @@ def get_longest_tweet(index_start, sentence_list):
             tweet = segment
             break
     return tweet
+
 
 def extract_tweets(min_tweet_length, pdf):
     text = extract_text(pdf)
@@ -30,7 +31,7 @@ def extract_tweets(min_tweet_length, pdf):
 
 tweets = extract_tweets(
     min_tweet_length=80,
-    pdf='otpow.pdf'
+    pdf=DOCUMENT
 )
 
 with open('tweets.txt', 'w') as file:
